@@ -1,0 +1,60 @@
+.card-pet {
+  width: 300px;
+  border-style: groove;
+}
+
+.card-pet-img>img {
+  width: 100%;
+  border-radius: 50%;
+}
+
+.card-pet-description {
+  padding: 8px;
+}
+
+.card-pet-description {
+  /*
+  display: flex;
+  justify-content: space-between;
+*/
+  text-align: center;
+}
+
+.card-pet-description>h3 {
+  margin-top: 0px;
+}
+
+.card-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 24px;
+  margin: 60px;
+}
+
+/* Smallest device*/
+@media (min-width: 100px) and (max-width: 575px) {
+  .card-box {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {
+  .card-box {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+  .card-box {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
+  .card-box {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}

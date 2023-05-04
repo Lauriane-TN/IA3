@@ -1,0 +1,9 @@
+@import 'components/card.css';
+@import 'components/banner.css';
+@import 'components/navbar.css';
+
+h1{
+  color:rgb(76, 162, 178);
+  text-align: center;
+  font-size: 48px;
+}
