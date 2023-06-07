@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Plug And Play</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">
+  <!--meta http-equiv="X-UA-Compatible" content="IE=edge"-->
+  <!--meta name="viewport" content="width=device-width, initial-scale=1.0"-->
+  <!-- Load TensorFlow.js. This is required to use MobileNet. -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.1"> </script>
+  <!-- Load the MobileNet model. -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@1.0.0"> </script>
+</head>
+<body>
+  <div class="container">
+    <h1>Les mots ont des sentiments</h1>
+    <input id="input" type="text" value="Trust, love, respect. Sweetheart, you give me all of that. You are my greatest inspiration. You always instill in me that you'll always be there for me.">
+    <button id="predict">Analyser</button>
+    <ul id="result"></ul>
+  </div>
+</body>
+<script>
+  // Notice there is no 'import' statement. 'mobilenet' and 'tf' is
+  // available on the index-page because of the script tag above.
+  const btn = document.getElementById('predict')
+  btn.addEventListener('click', (event) => {
+    let text = document.getElementById('input').value;
+    console.log(text)
+    let url = "http://localhost:8000/?user_input=" + text;
+    console.log(url)
+    fetch(url)
+    .then(
+        function (response) {
+            if (response.status !== 200) {
+                console.warn('Looks like there was a problem. Status Code: ' +
+                response.status);
+                return;
+            }
+            //Examine the text in the response
+            response.json().then(function (data) {
+                console.log(data);
+                const ul = document.getElementById('result')
+                ul.innerHTML = ""
+                data["sentiment"].forEach((element) =>
+                  ul.insertAdjacentHTML('beforeend',
+                      `<li>${element}</li>`)
+                )
+
+            });
+        }
+    )
+    .catch(function(err){
+        console.error('Fetch Error -', err);
+    })
+  })
+
+</script>
+</html>
